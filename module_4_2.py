@@ -9,4 +9,4 @@ inner_function() # ошибка
 # NameError: name 'inner_function' is not defined
 # вследствие различия пространства имён, т.к. мы не можем доставать значения внутри функции
 
-test_function() # Здесь - работает :-)
+test_function() # работает 
