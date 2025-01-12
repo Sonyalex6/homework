@@ -1,0 +1,26 @@
+from google.colab import drive
+drive.mount('/content/drive')
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+image = cv2.imread('/content/drive/MyDrive/Colab Notebooks/dog.jpg', cv2.IMREAD_GRAYSCALE)
+sobel_x = cv2.Sobel(image, cv2.CV_64F, 1, 0, ksize=5)
+sobel_y = cv2.Sobel(image, cv2.CV_64F, 0, 1, ksize=5)
+gradient_magnitude = np.sqrt(sobel_x**2 + sobel_y**2)
+sobel_x = cv2.convertScaleAbs(sobel_x)
+sobel_y = cv2.convertScaleAbs(sobel_y)
+gradient_magnitude = cv2.convertScaleAbs(gradient_magnitude)
+plt.figure(figsize=(15, 5))
+plt.subplot(1, 4, 1)
+plt.title('Оригинальное изображение')
+plt.imshow(image, cmap='gray')
+plt.subplot(1, 4, 2)
+plt.title('Градиент по оси X')
+plt.imshow(sobel_x, cmap='gray')
+plt.subplot(1, 4, 3)
+plt.title('Градиент по оси Y')
+plt.imshow(sobel_y, cmap='gray')
+plt.subplot(1, 4, 4)
+plt.title('Величина градиента')
+plt.imshow(gradient_magnitude, cmap='gray')
+plt.show()
